@@ -24,7 +24,6 @@ class MainWindow : public QMainWindow
     private:
         Server server_;
         ClientWidget *client_widget_;
-
 };
 
 #endif // MAINWINDOW_HPP

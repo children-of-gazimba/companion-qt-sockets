@@ -25,6 +25,7 @@ class ClientWidget : public QWidget
     private:
         void initLayout();
 
+    private:
         QLineEdit *ip_edit_;
         QLineEdit *port_edit_;
         QPushButton *client_connect_button_;

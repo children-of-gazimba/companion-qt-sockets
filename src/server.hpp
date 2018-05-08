@@ -4,7 +4,6 @@
 #include <QtNetwork>
 #include <QTcpServer>
 #include <QNetworkSession>
-
 #include <QList>
 
 class Server : public QObject
@@ -12,19 +11,21 @@ class Server : public QObject
     Q_OBJECT
 public:
     explicit Server(int port = 41736, QObject *parent = nullptr);
-    ~Server();
+    virtual ~Server();
 
 signals:
 
-private slots:
-    void newConnection();
+protected slots:
+    virtual void newConnection();
 
 public slots:
 
-private:
-    void initServer();
+protected:
+    virtual void initServer();
 
     QTcpServer *tcp_server_;
+    QList<QTcpSocket*> clients_;
+    QTimer* refresh_read_;
     int port_;
 };
 

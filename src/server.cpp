@@ -3,6 +3,8 @@
 Server::Server(int port, QObject *parent)
     : QObject(parent)
     , tcp_server_(Q_NULLPTR)
+    , clients_()
+    , refresh_read_(0)
     , port_(port)
 {
     initServer();
@@ -23,8 +25,18 @@ void Server::newConnection()
 
     socket->write("Hello client\r\n");
     socket->flush();
-    socket->waitForBytesWritten(3000);
-    socket->close();
+    /*socket->waitForBytesWritten(3000);
+    socket->close();*/
+    clients_.push_back(socket);
+
+    connect(socket, &QTcpSocket::disconnected,
+            [=]()
+        {
+            qDebug() << "client disconnected";
+            socket->close();
+            clients_.removeAll(socket);
+        }
+    );
 }
 
 void Server::initServer()
@@ -45,4 +57,17 @@ void Server::initServer()
         qDebug().nospace() << Q_FUNC_INFO << " @ line " << __LINE__;
         qDebug() << "  > " << "Success: Server started.";
     }
+
+    refresh_read_ = new QTimer(this);
+    connect(refresh_read_, &QTimer::timeout,
+            [=]()
+        {
+            foreach(auto client, clients_) {
+                if(client->bytesAvailable()) {
+                    qDebug() << client->readAll();
+                }
+            }
+        }
+    );
+    refresh_read_->start(1000);
 }

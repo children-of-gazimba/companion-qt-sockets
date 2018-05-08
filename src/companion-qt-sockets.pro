@@ -22,9 +22,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
+    main.cpp \
+    mainwindow.cpp \
     server.cpp \
     client.cpp
 
+
 HEADERS += \
+    mainwindow.hpp \
     server.hpp \
     client.h

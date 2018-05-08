@@ -26,5 +26,5 @@ SOURCES += \
     client.cpp
 
 HEADERS += \
-    server.hpp \
-    client.h
+    client.h \
+    server.h

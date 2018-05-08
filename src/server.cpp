@@ -1,4 +1,4 @@
-#include "server.hpp"
+#include "server.h"
 
 Server::Server(int port, QObject *parent)
     : QObject(parent)

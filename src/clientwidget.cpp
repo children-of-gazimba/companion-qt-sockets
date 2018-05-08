@@ -2,6 +2,7 @@
 
 ClientWidget::ClientWidget(QWidget *parent)
     : QWidget(parent)
+    , client_(Q_NULLPTR)
 {
     initLayout();
 
@@ -10,20 +11,22 @@ ClientWidget::ClientWidget(QWidget *parent)
 }
 
 void ClientWidget::initLayout() {
-   ip_edit_ = new QLineEdit(this);
-   ip_edit_->setPlaceholderText("IP-Address");
+    client_ = new Client();
 
-   port_edit_ = new QLineEdit("41736", this);
-   port_edit_->setPlaceholderText("Port");
+    ip_edit_ = new QLineEdit(this);
+    ip_edit_->setPlaceholderText("IP-Address");
 
-   client_connect_button_ = new QPushButton("Connect", this);
+    port_edit_ = new QLineEdit("41736", this);
+    port_edit_->setPlaceholderText("Port");
 
-   QHBoxLayout *outter = new QHBoxLayout;
-   outter->addWidget(ip_edit_, 6);
-   outter->addWidget(port_edit_, 2);
-   outter->addWidget(client_connect_button_, 2);
+    client_connect_button_ = new QPushButton("Connect", this);
 
-   setLayout(outter);
+    QHBoxLayout *outter = new QHBoxLayout;
+    outter->addWidget(ip_edit_, 6);
+    outter->addWidget(port_edit_, 2);
+    outter->addWidget(client_connect_button_, 2);
+
+    setLayout(outter);
 }
 
 
@@ -31,5 +34,5 @@ void ClientWidget::onConnectButtonPress() {
     QString ip = ip_edit_->text();
     int port = port_edit_->text().toInt();
 
-    client_.connect(ip, port);
+    client_->connect(ip, port);
 }

@@ -11,7 +11,7 @@ class Client : public QObject
         explicit Client(QObject *parent = nullptr);
         virtual ~Client();
 
-        virtual void connect(QString host, int port);
+        virtual void connectToHost(QString host, int port);
 
     signals:
 

@@ -29,7 +29,7 @@ class ClientWidget : public QWidget
         QLineEdit *ip_edit_;
         QLineEdit *port_edit_;
         QPushButton *client_connect_button_;
-        Client client_;
+        Client *client_;
 };
 
 #endif // CLIENTWIDGET_H

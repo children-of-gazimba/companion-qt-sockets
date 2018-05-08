@@ -6,19 +6,19 @@
 
 class Client : public QObject
 {
-    Q_OBJECT
-public:
-    explicit Client(QObject *parent = nullptr);
-    ~Client();
+        Q_OBJECT
+    public:
+        explicit Client(QObject *parent = nullptr);
+        virtual ~Client();
 
-    void connect(QString host, int port);
+        virtual void connect(QString host, int port);
 
-signals:
+    signals:
 
-public slots:
+    public slots:
 
-private:
-    QTcpSocket *tcp_socket_;
+    protected:
+        QTcpSocket *tcp_socket_;
 };
 
 #endif // CLIENT_H

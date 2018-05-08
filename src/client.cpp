@@ -14,7 +14,6 @@ void Client::connect(QString host, int port)
         tcp_socket_->deleteLater();
 
     tcp_socket_ = new QTcpSocket(this);
-
     tcp_socket_->connectToHost(host, port);
 
     if(tcp_socket_->waitForConnected(5000))
@@ -34,9 +33,7 @@ void Client::connect(QString host, int port)
 
         // close the connection
         tcp_socket_->close();
-    }
-    else
-    {
+    } else {
         qDebug().nospace() << Q_FUNC_INFO << " @ line " << __LINE__;
         qDebug() << "  > " << "Failure: couldn't connect to" << host << ":" << port;
     }

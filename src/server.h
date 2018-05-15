@@ -24,6 +24,7 @@ protected slots:
 public slots:
 
 protected:
+    virtual void sendToClient(const QByteArray& data, QTcpSocket* client);
     virtual void initServer();
     virtual void processClientMessage(const NetworkMessage& msg, QTcpSocket* client);
 

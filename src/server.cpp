@@ -23,8 +23,7 @@ void Server::newConnection()
     if(socket->bytesAvailable())
         qDebug() << "    > "  << "Client says:" << socket->readAll();
 
-    socket->write("Hello client\r\n");
-    socket->flush();
+    sendToClient("Hello client\r\n", socket);
 
     clients_.push_back(socket);
 
@@ -47,6 +46,12 @@ void Server::checkMessages()
                 processClientMessage(msg, client);
         }
     }
+}
+
+void Server::sendToClient(const QByteArray &data, QTcpSocket *client)
+{
+    client->write(data);
+    client->flush();
 }
 
 void Server::initServer()

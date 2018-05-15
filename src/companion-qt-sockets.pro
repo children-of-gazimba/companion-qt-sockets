@@ -26,7 +26,8 @@ SOURCES += \
     server.cpp \
     client.cpp \
     client_widget.cpp \
-    main_window.cpp
+    main_window.cpp \
+    network_message.cpp
 
 
 HEADERS += \
@@ -34,4 +35,5 @@ HEADERS += \
     client.h \
     server.h \
     client_widget.h \
-    main_window.h
+    main_window.h \
+    network_message.h

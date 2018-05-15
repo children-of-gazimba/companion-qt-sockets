@@ -59,7 +59,7 @@ protected:
     /**
      * called in constructor to initialize client setup.
     */
-    virtual void init();
+    void init();
 
     QTcpSocket *tcp_socket_;
     QTimer* timer_;

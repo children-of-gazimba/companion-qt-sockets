@@ -11,7 +11,7 @@
 
 #include "server.h"
 
-#include "clientwidget.h"
+#include "client_widget.h"
 
 class MainWindow : public QMainWindow
 {

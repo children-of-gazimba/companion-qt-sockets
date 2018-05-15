@@ -1,4 +1,4 @@
-#include "clientwidget.h"
+#include "client_widget.h"
 
 ClientWidget::ClientWidget(QWidget *parent)
     : QWidget(parent)
@@ -34,5 +34,5 @@ void ClientWidget::onConnectButtonPress() {
     QString ip = ip_edit_->text();
     int port = port_edit_->text().toInt();
 
-    client_->connect(ip, port);
+    client_->connectToHost(ip, port);
 }

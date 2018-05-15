@@ -73,8 +73,7 @@ const QByteArray NetworkMessage::toByteArray() const
     QJsonObject obj;
     obj[j_msg] = message_;
     obj[j_kwargs] = kwargs_;
-    if(error_.size() > 0)
-        obj[j_err] = error_;
+    obj[j_err] = error_;
     QJsonDocument doc(obj);
     return doc.toJson();
 }

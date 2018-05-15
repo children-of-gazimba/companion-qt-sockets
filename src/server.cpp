@@ -25,8 +25,7 @@ void Server::newConnection()
 
     socket->write("Hello client\r\n");
     socket->flush();
-    /*socket->waitForBytesWritten(3000);
-    socket->close();*/
+
     clients_.push_back(socket);
 
     connect(socket, &QTcpSocket::disconnected,
@@ -37,6 +36,17 @@ void Server::newConnection()
             clients_.removeAll(socket);
         }
     );
+}
+
+void Server::checkMessages()
+{
+    foreach(auto client, clients_) {
+        if(client->bytesAvailable()) {
+            NetworkMessage msg = NetworkMessage::fromByteArray(client->readAll());
+            if(msg.isValid())
+                processClientMessage(msg, client);
+        }
+    }
 }
 
 void Server::initServer()
@@ -60,14 +70,13 @@ void Server::initServer()
 
     refresh_read_ = new QTimer(this);
     connect(refresh_read_, &QTimer::timeout,
-            [=]()
-        {
-            foreach(auto client, clients_) {
-                if(client->bytesAvailable()) {
-                    qDebug() << client->readAll();
-                }
-            }
-        }
-    );
+            this, &Server::checkMessages);
     refresh_read_->start(1000);
+}
+
+void Server::processClientMessage(const NetworkMessage &msg, QTcpSocket *client)
+{
+    Q_UNUSED(client);
+    qDebug().nospace() << Q_FUNC_INFO << " @ line " << __LINE__;
+    qDebug() << "  > " << msg.toByteArray();
 }

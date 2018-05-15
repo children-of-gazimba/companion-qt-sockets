@@ -6,6 +6,8 @@
 #include <QNetworkSession>
 #include <QList>
 
+#include "network_message.h"
+
 class Server : public QObject
 {
     Q_OBJECT
@@ -17,11 +19,13 @@ signals:
 
 protected slots:
     virtual void newConnection();
+    virtual void checkMessages();
 
 public slots:
 
 protected:
     virtual void initServer();
+    virtual void processClientMessage(const NetworkMessage& msg, QTcpSocket* client);
 
     QTcpServer *tcp_server_;
     QList<QTcpSocket*> clients_;

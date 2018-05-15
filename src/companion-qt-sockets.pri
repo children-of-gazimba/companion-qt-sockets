@@ -9,7 +9,9 @@ CONFIG(debug, debug|release) {
 }
 
 HEADERS += $$PWD/client.h \
-           $$PWD/server.h 
+           $$PWD/server.h \
+           $$PWD/network_message.h
            
 SOURCES += $$PWD/client.cpp \
-           $$PWD/server.cpp 
+           $$PWD/server.cpp \
+           $$PWD/network_message.cpp 

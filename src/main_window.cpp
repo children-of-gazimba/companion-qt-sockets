@@ -2,10 +2,13 @@
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
-    , server_(41736, this)
+    , client_(0)
 {
-   client_widget_ = new ClientWidget(this);
-   setCentralWidget(client_widget_);
+   client_ = new UdpBroadcastClient(this);
+   connect(client_, &UdpBroadcastClient::messageReceived,
+           this, [=](const QByteArray& arr) {
+        qDebug() << arr;
+   });
 }
 
 MainWindow::~MainWindow()

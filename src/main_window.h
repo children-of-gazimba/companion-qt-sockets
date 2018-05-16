@@ -12,6 +12,7 @@
 #include "server.h"
 
 #include "client_widget.h"
+#include "udp_broadcast_client.h"
 
 class MainWindow : public QMainWindow
 {
@@ -23,7 +24,7 @@ class MainWindow : public QMainWindow
 
     private:
         Server server_;
-        ClientWidget *client_widget_;
+        UdpBroadcastClient* client_;
 };
 
 #endif // MAINWINDOW_HPP

@@ -12,6 +12,7 @@ class UdpBroadcastClient : public QObject
 public:
     explicit UdpBroadcastClient(QObject *parent = nullptr);
     explicit UdpBroadcastClient(unsigned port, QObject *parent = nullptr);
+    virtual ~UdpBroadcastClient();
 
 signals:
     void messageReceived(const QByteArray&, const QHostAddress&, unsigned);

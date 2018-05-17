@@ -18,6 +18,12 @@ UdpBroadcastClient::UdpBroadcastClient(unsigned port, QObject *parent)
     initSocket();
 }
 
+UdpBroadcastClient::~UdpBroadcastClient()
+{
+    if(socket_ && socket_->isOpen())
+        socket_->close();
+}
+
 void UdpBroadcastClient::processPendingDatagrams()
 {
     QByteArray datagram;
@@ -33,7 +39,7 @@ void UdpBroadcastClient::processPendingDatagrams()
 void UdpBroadcastClient::initSocket()
 {
     socket_ = new QUdpSocket(this);
-    socket_->bind(QHostAddress::Broadcast, port_, QUdpSocket::ShareAddress);
+    socket_->bind(port_, QUdpSocket::ShareAddress);
     connect(socket_, &QUdpSocket::readyRead,
             this, &UdpBroadcastClient::processPendingDatagrams);
 }

@@ -23,7 +23,6 @@ class MainWindow : public QMainWindow
         ~MainWindow();
 
     private:
-        Server server_;
         UdpBroadcastClient* client_;
 };
 

@@ -20,7 +20,7 @@ Client::Client(int read_frequency, QObject *parent)
 
 Client::~Client()
 {
-    if(tcp_socket_->isOpen())
+    if(tcp_socket_ && tcp_socket_->isOpen())
         tcp_socket_->close();
 }
 

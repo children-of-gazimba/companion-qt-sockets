@@ -33,7 +33,7 @@ void UdpBroadcastClient::processPendingDatagrams()
 void UdpBroadcastClient::initSocket()
 {
     socket_ = new QUdpSocket(this);
-    socket_->bind(port_, QUdpSocket::ShareAddress);
+    socket_->bind(QHostAddress::Broadcast, port_, QUdpSocket::ShareAddress);
     connect(socket_, &QUdpSocket::readyRead,
             this, &UdpBroadcastClient::processPendingDatagrams);
 }

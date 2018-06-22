@@ -20,4 +20,4 @@ SOURCES += $$PWD/client.cpp \
            $$PWD/udp_broadcast_server.cpp \
            $$PWD/udp_broadcast_client.cpp \
            $$PWD/network_message.cpp \
-           $$PWD/upd_client.cpp
+           $$PWD/udp_client.cpp

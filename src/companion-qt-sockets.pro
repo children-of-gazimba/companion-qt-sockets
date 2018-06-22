@@ -29,7 +29,8 @@ SOURCES += \
     main_window.cpp \
     network_message.cpp \
     udp_broadcast_client.cpp \
-    udp_broadcast_server.cpp
+    udp_broadcast_server.cpp \
+    udp_client.cpp
 
 
 HEADERS += \
@@ -40,4 +41,5 @@ HEADERS += \
     main_window.h \
     network_message.h \
     udp_broadcast_client.h \
-    udp_broadcast_server.h
+    udp_broadcast_server.h \
+    udp_client.h
